@@ -45,6 +45,14 @@ public class SnakeMove : MonoBehaviour
     //FixedUpdate is called at a fixed interval
     void FixedUpdate()
     {
+        //move snake body
+        for (int i = segments.Count - 1; i > 0; i--)
+        {
+            segments[i].position = segments[i - 1].position;
+        }
+
+
+
         this.transform.position = new Vector2(                     //get the position
             Mathf.Round(this.transform.position.x) + direction.x,  //round the number add value to X
             Mathf.Round(this.transform.position.y) + direction.y   //round the number add value to y
