@@ -10,7 +10,7 @@ public class food : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        RandomPos();
     }
 
     // Update is called once per frame
@@ -24,15 +24,15 @@ public class food : MonoBehaviour
     {
         Bounds bounds = grid.bounds;  //declare the spatial limit
 
-        float x = Random.Range(bounds.min.x, bounds.max.y); //random value of x in the limit
+        float x = Random.Range(bounds.min.x, bounds.max.x); //random value of x in the limit
         float y = Random.Range(bounds.min.y, bounds.max.y); //random value of y in the limit
 
         transform.position = new Vector2(Mathf.Round(x), Mathf.Round(y));
     }
 
-    //
-    void OnCollision2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Player")
         RandomPos();
     }
 }

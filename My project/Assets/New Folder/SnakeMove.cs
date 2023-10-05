@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SnakeMove : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class SnakeMove : MonoBehaviour
 
     List<Transform> segments; //variable to store all body parts
     public Transform bodyPrefab;   //variable to store the body
+
+    public bool goingUp;
+    public bool goingDown;
+    public bool goingLeft;
+    public bool goingRight;
 
     // Start is called before the first frame update
     void Start()
@@ -23,22 +29,38 @@ public class SnakeMove : MonoBehaviour
         //snake movement
         if (Input.GetKeyDown(KeyCode.W)) //when W is pressed
         {
-            direction = Vector2.up;      //go up
+            direction = Vector2.up; //go up
+            goingUp = true;
+            goingDown = false;
+            goingLeft = false;
+            goingRight = false;
         }
 
         else if (Input.GetKeyDown(KeyCode.A)) //when A is pressed
         {
             direction = Vector2.left;   //go left
+            goingUp = false;
+            goingDown = false;
+            goingLeft = true;
+            goingRight = false;
         }
 
         else if (Input.GetKeyDown(KeyCode.S)) //when S is pressed
         {
             direction = Vector2.down; //go down
+            goingUp = false;
+            goingDown = true;
+            goingLeft = false;
+            goingRight=false;
         }
 
         else if (Input.GetKeyDown(KeyCode.D)) // when D is pressed
         {
             direction = Vector2.right; // go right
+            goingUp = false;
+            goingDown = false;
+            goingLeft = false;
+            goingRight = true;
         }
     }
 
@@ -73,6 +95,12 @@ public class SnakeMove : MonoBehaviour
         if (other.tag == "Food")
         {
             Grow();
+        }
+
+        else if (other.tag == "Obstacle") //check if the other obje
+        {
+            //debug.Log("Hit")
+            SceneManager.LoadScene("EndScene"); //change to the end scene
         }
     }
 }
