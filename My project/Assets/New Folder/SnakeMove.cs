@@ -16,6 +16,7 @@ public class SnakeMove : MonoBehaviour
     public bool goingLeft;
     public bool goingRight;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +100,6 @@ public class SnakeMove : MonoBehaviour
 
         else if (other.tag == "Obstacle") //check if the other obje
         {
-            //debug.Log("Hit")
             SceneManager.LoadScene("EndScene"); //change to the end scene
         }
     }
